@@ -67,23 +67,19 @@ export function getMinisterios({
 }: {
   data: Data;
 }): { entity: Entity; currentAuthority?: Authority }[] {
-  return [
-    ...data.entitiesLU.values().filter((d) => d.kind === "Ministerio"),
-  ].map((entity) => {
-    const currentAuthorities = [
-      ...data.authoritiesLU
-        .values()
-        .filter(
-          (authority) => authority.entity.id === entity.id && authority.inCharge
-        ),
-    ];
-    if (currentAuthorities.length > 1) {
-      throw new Error(`Entity ${entity.id} has more than one authority`);
-    }
-    const currentAuthority =
-      currentAuthorities.length === 1 ? currentAuthorities[0] : undefined;
-    return { entity, currentAuthority };
-  });
+  return [...data.entitiesLU.values()]
+    .filter((d) => d.kind === "Ministerio")
+    .map((entity) => {
+      const currentAuthorities = [...data.authoritiesLU.values()].filter(
+        (authority) => authority.entity.id === entity.id && authority.inCharge
+      );
+      if (currentAuthorities.length > 1) {
+        throw new Error(`Entity ${entity.id} has more than one authority`);
+      }
+      const currentAuthority =
+        currentAuthorities.length === 1 ? currentAuthorities[0] : undefined;
+      return { entity, currentAuthority };
+    });
 }
 
 // For reference
