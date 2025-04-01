@@ -1,11 +1,11 @@
 import Image from "next/image";
 import styles from "./page.module.css";
-import Ministros from "@/components/Ministros";
+import Ministerios from "@/components/Ministerios";
 
 export default function Home() {
   return (
     <div className={styles.page}>
-      <header>
+      <header className={styles.header}>
         <h1>Bolivia</h1>
         <p>
           Directorio de ministros, viceministros y autoridades del Estado
@@ -13,7 +13,7 @@ export default function Home() {
         </p>
       </header>
       <main className={styles.main}>
-        <Ministros></Ministros>
+        <Ministerios />
       </main>
       <footer className={styles.footer}>
         <a
